@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TextSectionComponent } from './text-section/text-section.component';
@@ -14,10 +14,10 @@ import { MenuComponent } from './menu/menu.component';
 
 export class AppComponent {
   title = 'Hi, Im Ida';
-  firstSection = ['about me', "text about me"];
-  secondSection = ["skills", "skills that i have"];
-  thirdSection = ["experience", "lots and lots of experience"];
+  firstSection = ['about me', "Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology.",false,158.2265625];
+  secondSection = ["skills", "Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology.",false,258.2109375];
+  thirdSection = ["experience", "Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology.",false,358.1953125];
 
-  headlines: string[] = [this.firstSection[0],this.secondSection[0],this.thirdSection[0]]
+  headlines: any[] = [this.firstSection,this.secondSection,this.thirdSection];
 
 }
