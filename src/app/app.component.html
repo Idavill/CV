@@ -188,27 +188,57 @@
   }
 
 .portrait{
-    z-index: 2;
-  left: 30%;
+  position:relative;
+  z-index: 2;
 }
 
-.headline{
+.circle2 {
+    position: absolute;
+    top: -10em;
+    left: -10em;
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%; /* To make it a circle */
+    background-color: red;
+    box-shadow: 0 0 50px 50px red; /* To create the blur effect */
+    filter: blur(120px); /* To further blur the edges */
+    z-index: 0; /* To position it behind all text and images */
+}
 
+.text {
+    position: relative; /* Ensure relative positioning for contained elements */
+}
+
+.fixed-corner {
+  position: fixed;
+  top: 100px;
+  right: 150px;
 }
 
 </style>
 
 <main class="main">
   <div class="content">
+    
     <div class="left-side">
-      <h1>{{ title }}</h1>
+
+      <h1 class ="text">{{ title }}</h1>
+
       <br><br>
+      
       <img class="portrait" src="/assets/Intersect_2.png"/>
-
-
-      <h1>Since the beginning of my professional journey I’ve been working with design and technology. </h1>
-      <h1>___________________________</h1>
+      <app-text-section [text]="firstSection[1]"></app-text-section>
+      <app-text-section [text]="secondSection[1]"></app-text-section>
+      <app-text-section [text]="thirdSection[1]"></app-text-section>
+      <h1 class ="text">Since the beginning of my professional journey I’ve been working with design and technology. </h1>
+      <h1 class ="text">Since the beginning of my professional journey I’ve been working with design and technology. </h1>
+      <h1 class ="text">___________________________</h1>
       <h2>Since the beginning of my professional journey I’ve been working with design and technology. </h2>
+      <img class="portrait" src="/assets/computer.png"/>
+      <img class="portrait" src="/assets/model.png"/>
+
+
+      
       <h1>___________________________</h1>
       <h1>Since the beginning of my professional journey I’ve been working with design and technology. </h1>
       <h1>___________________________</h1>
@@ -219,7 +249,9 @@
       <h1>Since the beginning of my professional journey I’ve been working with design and technology. </h1>
       <h1>___________________________</h1>
    </div>
-   
+   <div class="fixed-corner">
+    <app-menu [headlines]="headlines"/>
+  </div>
   </div>
 </main>
 
