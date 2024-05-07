@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, ViewChild, HostListener, Output, EventEmi
 import { TextSectionInterface } from '../text-section-interface';
 import { SECTIONS } from '../mock-text/mock-text.component';
 import { NgFor } from '@angular/common';
+import { TextSectionServiceService } from '../text-section-service.service';
 
 @Component({
   selector: 'app-text-section',
@@ -11,11 +12,19 @@ import { NgFor } from '@angular/common';
   styleUrl: './text-section.component.css'
 })
 export class TextSectionComponent {
-  sections = SECTIONS; // populate with mockdata
+  sections: TextSectionInterface[] = []; // populate with data using service
 
   @Input() text:string | boolean | number = ''; // decorate the property with @Input()
   @Output() settingPositions: EventEmitter<number> = new EventEmitter<number>();
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef,private textSectionService: TextSectionServiceService) { }
+
+  getSections(): void {
+    this.sections = this.textSectionService.getSections();
+  }
+
+  ngOnInit(): void {
+    this.getSections();
+  }
 
   ngAfterViewInit() {
     this.settingPositions.emit(this.elementRef.nativeElement.getBoundingClientRect().y);
