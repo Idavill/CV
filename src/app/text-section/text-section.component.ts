@@ -1,23 +1,32 @@
 import { Component, Input, ElementRef, ViewChild, HostListener, Output, EventEmitter } from '@angular/core';
+import { TextSectionInterface } from '../text-section-interface';
+import { SECTIONS } from '../mock-text/mock-text.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-text-section',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './text-section.component.html',
   styleUrl: './text-section.component.css'
 })
 export class TextSectionComponent {
+  sections = SECTIONS; // populate with mockdata
 
   @Input() text:string | boolean | number = ''; // decorate the property with @Input()
-  @Input() pseudoHeadline: string | boolean | number= '';
-  
+  @Output() settingPositions: EventEmitter<number> = new EventEmitter<number>();
   constructor(private elementRef: ElementRef) { }
 
   ngAfterViewInit() {
-    const elementPosition = this.elementRef.nativeElement.getBoundingClientRect();
-    console.log('Element position:', elementPosition);
+    this.settingPositions.emit(this.elementRef.nativeElement.getBoundingClientRect().y);
+    console.log('Element position:', this.elementRef.nativeElement.getBoundingClientRect().y);
   }
+
+  // ngAfterViewInit() {
+  //   this.position.emit(this.elementRef.nativeElement.getBoundingClientRect())
+  //   this.position = this.elementRef.nativeElement.getBoundingClientRect();
+  //   console.log('Element position:', this.position);
+  // }
 
   //@Output() divInMiddle: EventEmitter<boolean> = new EventEmitter<boolean>();
 
