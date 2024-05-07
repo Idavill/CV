@@ -13,4 +13,14 @@ export class TextSectionServiceService {
     return SECTIONS;
   }
 
+  setPositions(positions:number[]):void{
+    SECTIONS.forEach((section,i) => {
+      section.position = positions[i]
+    });
+  }
+
+  setPosition(newPosition:number,id:number):void{
+    SECTIONS[id].position = newPosition;
+  }
+
 }

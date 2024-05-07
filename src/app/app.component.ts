@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, HostListener } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TextSectionComponent } from './text-section/text-section.component';
+//import { TextSectionServiceService } from './text-section-service.service';
 import { MenuComponent } from './menu/menu.component';
 
 @Component({
@@ -13,6 +14,9 @@ import { MenuComponent } from './menu/menu.component';
 })
 
 export class AppComponent {
+  
+  //constructor(private textSectionService: TextSectionServiceService) { }
+  
   title = 'Hi, Im Ida';
   firstSection = ['about me', "Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology.",false,158.2265625];
   secondSection = ["skills", "Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology.",false,258.2109375];

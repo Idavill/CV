@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TextSectionServiceService } from '../text-section-service.service';
+import { TextSectionInterface } from '../text-section-interface';
 
 @Component({
   selector: 'app-menu',
@@ -8,30 +10,38 @@ import { CommonModule } from '@angular/common';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
+
+
 export class MenuComponent {
+  sections:TextSectionInterface[] = [];
   @Input() headlines: any[] = [];
-  positions: Array<number> = [];
+  positions: Array<number> = []; // keep
   viewportHeight = window.innerHeight || document.documentElement.clientHeight;
   @Output() divInMiddle: EventEmitter<number> = new EventEmitter<number>();
   divColor:string = "black";
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef,private textSectionService: TextSectionServiceService) {
+  }
+
+  getSections(): void {
+    this.sections = this.textSectionService.getSections();
   }
 
   ngOnInit(){
-    console.log("inside constructor", this.headlines);
-    this.headlines.forEach(element => {
-      this.positions.push(element[3]);
-      console.log("added : ",element[3]);
+    this.getSections();
+    
+    this.sections.forEach(section => {
+      this.positions.push(section.position);
+      console.log("added : ",section.position);
     });
   }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
-    this.checkDivPosition();
+    this.checkPosition();
   }
 
-  checkDivPosition(): void{
+  checkPosition(): void{
     console.log("Checking position");
     if(this.positions[0] >= 0 && this.positions[0] >= window.scrollY){
       this.headlines[0][2] = true;

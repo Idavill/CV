@@ -1,8 +1,11 @@
-import { Component, Input, ElementRef, ViewChild, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChildren, QueryList, Renderer2, Directive, ElementRef } from '@angular/core';
 import { TextSectionInterface } from '../text-section-interface';
-import { SECTIONS } from '../mock-text/mock-text.component';
 import { NgFor } from '@angular/common';
 import { TextSectionServiceService } from '../text-section-service.service';
+//import { TextComponent } from '../text/text.component';
+
+// @Directive({selector: 'app-text'})
+// class ChildDirective {}
 
 @Component({
   selector: 'app-text-section',
@@ -13,23 +16,30 @@ import { TextSectionServiceService } from '../text-section-service.service';
 })
 export class TextSectionComponent {
   sections: TextSectionInterface[] = []; // populate with data using service
-
-  @Input() text:string | boolean | number = ''; // decorate the property with @Input()
-  @Output() settingPositions: EventEmitter<number> = new EventEmitter<number>();
   constructor(private elementRef: ElementRef,private textSectionService: TextSectionServiceService) { }
-
+  //@ViewChildren(ChildDirective) viewChildren!: QueryList<ChildDirective>;
   getSections(): void {
     this.sections = this.textSectionService.getSections();
   }
-
   ngOnInit(): void {
     this.getSections();
   }
 
-  ngAfterViewInit() {
-    this.settingPositions.emit(this.elementRef.nativeElement.getBoundingClientRect().y);
-    console.log('Element position:', this.elementRef.nativeElement.getBoundingClientRect().y);
-  }
+  // setPositions(){
+  //   this.textSectionService.setPosition(this.elementRef.nativeElement.getBoundingClientRect().y,0);
+  // }
+
+
+  // ngAfterViewInit() {
+  //   //console.log("children === ", this.viewChildren);
+  //   //console.log('Element position:', this.elementRef.nativeElement.getBoundingClientRect());
+  //   console.log("ng after view init");
+  //   // console.log(this.elements);
+  //   // this.elements.forEach((element) => {
+  //   //   const posY = element.nativeElement.getBoundingClientRect().top;
+  //   //   console.log('Y Position:', posY);
+  //   // });
+  // }
 
   // ngAfterViewInit() {
   //   this.position.emit(this.elementRef.nativeElement.getBoundingClientRect())
