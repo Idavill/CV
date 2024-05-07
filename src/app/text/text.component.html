@@ -1,1 +1,9 @@
-<p>text works!</p>
+<h1 class ="text">{{textDescription}}</h1>
+<div *ngIf="!isEmpty(imagePaths)">
+    <div *ngFor="let path of imagePaths">
+        <img src={{path}}/>
+    </div>
+    <div *ngFor="let text of imageText">
+        <h2>{{text}}</h2>
+    </div>
+</div>

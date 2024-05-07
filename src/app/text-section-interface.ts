@@ -4,4 +4,6 @@ export interface TextSectionInterface {
     text:string;
     isActive:boolean;
     position:number;
+    imagepaths:string[];
+    imageText:string[];
 }

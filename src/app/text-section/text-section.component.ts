@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, Renderer2, Directive, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChildren, QueryList, Renderer2, Directive, ElementRef, ViewChild, Output } from '@angular/core';
 import { TextSectionInterface } from '../text-section-interface';
 import { NgFor } from '@angular/common';
 import { TextSectionServiceService } from '../text-section-service.service';

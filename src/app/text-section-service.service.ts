@@ -17,17 +17,22 @@ export class TextSectionServiceService {
   }
 
   setPositions(positions:number[]):Observable<TextSectionInterface[]>{
-    const updated = of("updated");
-    if (positions[0] < 0){
-      this.offset = positions[0] * -1;
-    }
 
     SECTIONS.forEach((section,i) => {
-      section.position = positions[i] + this.offset + 500;
+      section.position = positions[i] ;
     });
-    
     return this.sections;
   }
+
+  // setPositions(positions:number[]):Observable<TextSectionInterface[]>{
+  //   if (positions[0] < 0){
+  //     this.offset = positions[0] * -1;
+  //   }
+  //   SECTIONS.forEach((section,i) => {
+  //     section.position = positions[i] + this.offset + 500;
+  //   });
+  //   return this.sections;
+  // }
 
   setPosition(newPosition:number,id:number):void{
     SECTIONS[id].position = newPosition;
