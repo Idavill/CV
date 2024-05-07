@@ -1,7 +1,8 @@
 <div>
-<app-text #textTest></app-text>
-  <li #myElement *ngFor="let section of sections">
-    <h1 class ="text">{{section.text}}</h1>
-    <h2 class ="text">___________________________</h2>
-  </li>
+  <div *ngFor="let section of sections">
+    <br/><br/>
+    <app-text [textDescription]="section.text" [imagePaths]="section.imagepaths" [imageText]="section.imageText"></app-text>
+    <h2 #myElement class ="text">___________________________</h2>
+    <br/><br/>
+  </div>
 </div>
