@@ -12,6 +12,9 @@ export class TextComponent {
   @Input() imagePaths:string[] = [];
   @Input() textDescription:string = '';
   @Input() imageText:string[] = [];
+  @Input() iconObject:string[] = [];
+  @Input() iconObject2:string[] = [];
+  @Input() iconObject3:string[] = [];
 
   isEmpty(value: any): boolean {
     return (
