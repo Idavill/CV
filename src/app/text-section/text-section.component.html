@@ -1,5 +1,7 @@
-
-  <li *ngFor="let section of sections">
+<div>
+<app-text #textTest></app-text>
+  <li #myElement *ngFor="let section of sections">
     <h1 class ="text">{{section.text}}</h1>
     <h2 class ="text">___________________________</h2>
   </li>
+</div>

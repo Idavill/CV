@@ -1,7 +1,8 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnChanges, Output, SimpleChange} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextSectionServiceService } from '../text-section-service.service';
 import { TextSectionInterface } from '../text-section-interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
@@ -14,26 +15,39 @@ import { TextSectionInterface } from '../text-section-interface';
 
 export class MenuComponent {
   sections:TextSectionInterface[] = [];
-  @Input() headlines: any[] = [];
+  //@Input() headlines: any[] = [];
   positions: Array<number> = []; // keep
   viewportHeight = window.innerHeight || document.documentElement.clientHeight;
   @Output() divInMiddle: EventEmitter<number> = new EventEmitter<number>();
   divColor:string = "black";
+  dataSubscription: Subscription = new Subscription;
+  settingDataSubscription: Subscription = new Subscription;
 
   constructor(private elementRef: ElementRef,private textSectionService: TextSectionServiceService) {
   }
 
   getSections(): void {
-    this.sections = this.textSectionService.getSections();
+    this.textSectionService.getSections()
+        .subscribe(sections => {
+          this.sections = sections
+          this.sections.forEach(section => {
+            this.positions.push(section.position);
+            console.log(section.position);
+          });
+        })
+  }
+
+  setPosition():void {
+    this.settingDataSubscription = this.textSectionService.setPositions([0,0,0])
+    .subscribe(data => {
+      console.log("SUBSCRIPTION for setting data ::", data);
+      console.log("positions after setting-subscription::", this.positions);
+    });
   }
 
   ngOnInit(){
     this.getSections();
-    
-    this.sections.forEach(section => {
-      this.positions.push(section.position);
-      console.log("added : ",section.position);
-    });
+    this.setPosition();
   }
 
   @HostListener('window:scroll', [])
@@ -43,42 +57,18 @@ export class MenuComponent {
 
   checkPosition(): void{
     console.log("Checking position");
-    if(this.positions[0] >= 0 && this.positions[0] >= window.scrollY){
-      this.headlines[0][2] = true;
-      this.headlines[1][2] = false;
-      this.headlines[2][2] = false;
-    } else if (this.positions[1] >= this.positions[0] && this.positions[1] >= window.scrollY){
-      this.headlines[0][2] = false;
-      this.headlines[1][2] = true;
-      this.headlines[2][2] = false;
-    } else if (this.positions[2] >= this.positions[1] && this.positions[2] >= window.scrollY){
-      this.headlines[0][2] = false;
-      this.headlines[1][2] = false;
-      this.headlines[2][2] = true;
+    if(this.sections[0].position >= 0 && this.sections[0].position >= window.scrollY){
+      this.sections[0].isActive = true;
+      this.sections[1].isActive = false;
+      this.sections[2].isActive = false;
+    } else if (this.sections[1].position >= this.sections[0].position && this.sections[1].position >= window.scrollY){
+      this.sections[0].isActive = false;
+      this.sections[1].isActive = true;
+      this.sections[2].isActive = false;
+    } else if (this.sections[2].position >= this.sections[1].position && this.sections[2].position >= window.scrollY){
+      this.sections[0].isActive = false;
+      this.sections[1].isActive = false;
+      this.sections[2].isActive = true;
   }
   }
-
-  emitMiddleEvent(){
-
-  }
-  // checkDivPosition(): void {
-  //   console.log("checkingDicposition");
-  //   const element = this.elementRef.nativeElement.querySelector('.about'); // Replace 'your-div-class' with the actual class of your div
-    
-  //   if(element != null){
-  //     const rect = element.getBoundingClientRect();
-  //     const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-
-  //   if(rect.top === null){
-  //     console.log("rect is null");
-  //   }
-  //   else if (rect.top >= 0 && rect.bottom <= viewportHeight) {
-      
-  //     console.log("true");
-  //   } else {
-  //     console.log("false");
-  //   }
-  // }
-  // }
-
 }

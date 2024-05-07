@@ -23,10 +23,6 @@ export class AppComponent {
   thirdSection = ["experience", "Since the beginning of my professional journey I’ve been working with design and technology. Since the beginning of my professional journey I’ve been working with design and technology.",false,358.1953125];
 
   positions: number[]= [];
-  headlines: any[] = [this.firstSection,this.secondSection,this.thirdSection];
+  //headlines: any[] = [this.firstSection,this.secondSection,this.thirdSection];
 
-  addPosition(newPosition:number){
-    //console.log(newPosition);
-    //this.positions.push(newPosition);
-  }
 }
