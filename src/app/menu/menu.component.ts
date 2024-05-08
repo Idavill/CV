@@ -15,8 +15,7 @@ import { Subscription } from 'rxjs';
 
 export class MenuComponent {
   sections:TextSectionInterface[] = [];
-  //@Input() headlines: any[] = [];
-  positions: Array<number> = []; // keep
+  positions:number[] = [];
   viewportHeight = window.innerHeight || document.documentElement.clientHeight;
   @Output() divInMiddle: EventEmitter<number> = new EventEmitter<number>();
   divColor:string = "black";
@@ -30,18 +29,13 @@ export class MenuComponent {
     this.textSectionService.getSections()
         .subscribe(sections => {
           this.sections = sections
-          this.sections.forEach(section => {
-            this.positions.push(section.position);
-            console.log(section.position);
-          });
         })
   }
 
   setPosition():void {
     this.settingDataSubscription = this.textSectionService.setPositions([0,0,0])
     .subscribe(data => {
-      console.log("SUBSCRIPTION for setting data ::", data);
-      console.log("positions after setting-subscription::", this.positions);
+      this.sections = data;
     });
   }
 
@@ -61,14 +55,22 @@ export class MenuComponent {
       this.sections[0].isActive = true;
       this.sections[1].isActive = false;
       this.sections[2].isActive = false;
+      this.sections[3].isActive = false;
     } else if (this.sections[1].position >= this.sections[0].position && this.sections[1].position >= window.scrollY){
       this.sections[0].isActive = false;
       this.sections[1].isActive = true;
       this.sections[2].isActive = false;
+      this.sections[3].isActive = false;
     } else if (this.sections[2].position >= this.sections[1].position && this.sections[2].position >= window.scrollY){
       this.sections[0].isActive = false;
       this.sections[1].isActive = false;
       this.sections[2].isActive = true;
-  }
+      this.sections[3].isActive = false;
+    } else if (this.sections[3].position >= this.sections[2].position && this.sections[3].position >= window.scrollY){
+      this.sections[0].isActive = false;
+      this.sections[1].isActive = false;
+      this.sections[2].isActive = false;
+      this.sections[3].isActive = true;
+    }
   }
 }

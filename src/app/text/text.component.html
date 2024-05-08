@@ -1,25 +1,48 @@
 <h1 class ="text">{{textDescription}}</h1>
 <div >
+    <div class="skills" *ngIf="!isEmpty(skillList1[0])" >
+        <img class="logo" src={{skillList1[0]}}>
+        <h2 class="logo-text">
+            {{skillList1[1]}}
+            <div *ngFor="let skill of skillList1">
+                <p class="logo-paragraph">{{skill}}</p>
+            </div>
+            <h2 class="logo-paragraph">{{skillList1[2]}}</h2>
+            <p class="logo-paragraph">{{skillList1[3]}}</p>
+        </h2>
+    </div>
+    <div class="skills" *ngIf="!isEmpty(skillList2[0])" >
+        <img class="logo" src={{skillList2[0]}}>
+        <h2 class="logo-text">
+            {{skillList2[1]}}
+            <div *ngFor="let skill of skillList2">
+                <p class="logo-paragraph">{{skill}}</p>
+            </div>
+        </h2>
+    </div>
     <div class="skills" *ngIf="!isEmpty(iconObject[0])" >
         <img class="logo" src={{iconObject[0]}}>
         <h2 class="logo-text">
             {{iconObject[1]}}
-            <h2 class="logo-text">{{iconObject[2]}}</h2>
-            <p class="logo-text">{{iconObject[3]}}</p>
+            <h2 class="logo-paragraph">{{iconObject[2]}}</h2>
+            <p class="logo-paragraph">{{iconObject[3]}}</p>
         </h2>
     </div>
     <div class="skills" *ngIf="!isEmpty(iconObject2[0])" >
         <img class="logo" src={{iconObject2[0]}}>
         <h2 class="logo-text">
             {{iconObject2[1]}}
-            <h4 class="logo-text">{{iconObject2[2]}}</h4>
-            <p class="logo-text">{{iconObject2[3]}}</p>
+            <h4 class="logo-paragraph">{{iconObject2[2]}}</h4>
+            <p class="logo-paragraph">{{iconObject2[3]}}</p>
         </h2>
     </div>
     <div class="skills" *ngIf="!isEmpty(iconObject3[0])" >
         <img class="logo" src={{iconObject3[0]}}>
-        <h2 class="logo-text">{{iconObject3[1]}}</h2>
-        <h2 class="logo-text">{{iconObject3[2]}}</h2>
-        <p class="logo-text">{{iconObject3[3]}}</p>
+        <h2 class="logo-text">
+            {{iconObject3[1]}}
+            <h2 class="logo-paragraph">{{iconObject3[2]}}</h2>
+            <p class="logo-paragraph">{{iconObject3[3]}}</p>
+        </h2>
+
     </div>
 </div>

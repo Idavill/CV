@@ -46,6 +46,7 @@ export class TextSectionComponent {
     });
     this.setSections(tempPosition);
     console.log("new positions:",tempPosition);
+    console.log("updated positions in class : ", this.sections);
   }
 
   ngDoCheck() {

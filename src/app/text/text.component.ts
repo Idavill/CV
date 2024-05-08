@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule, NgIf} from '@angular/common';
+import { CommonModule, NgIf, NgFor} from '@angular/common';
 
 @Component({
   selector: 'app-text',
   standalone: true,
-  imports: [CommonModule,NgIf],
+  imports: [CommonModule,NgIf,NgFor],
   templateUrl: './text.component.html',
   styleUrl: './text.component.css'
 })
@@ -15,6 +15,8 @@ export class TextComponent {
   @Input() iconObject:string[] = [];
   @Input() iconObject2:string[] = [];
   @Input() iconObject3:string[] = [];
+  @Input() skillList1:string[] = [];
+  @Input() skillList2:string[] = [];
 
   isEmpty(value: any): boolean {
     return (
