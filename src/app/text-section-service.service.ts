@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 })
 export class TextSectionServiceService {
   sections:Observable<TextSectionInterface[]> = of(SECTIONS);
+  scrollPosition:Observable<number[]>=of([]);
   offset:number = 0;
 
   constructor() { }
@@ -19,8 +20,7 @@ export class TextSectionServiceService {
   setPositions(positions:number[]):Observable<TextSectionInterface[]>{
     SECTIONS.forEach((section,i) => {
       section.position = positions[i] + this.offset;
-      console.log("test",section.position);
-    });
+      });
     return this.sections;
   }
 

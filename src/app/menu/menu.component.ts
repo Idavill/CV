@@ -49,6 +49,11 @@ export class MenuComponent {
     this.checkPosition();
   }
 
+  moveToSection(position:number):void{
+    console.log(position);
+    window.scrollTo(0,position);
+  }
+
   checkPosition(): void{
     console.log("Checking position");
     if(this.sections[0].position >= 0 && this.sections[0].position >= window.scrollY){

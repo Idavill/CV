@@ -15,7 +15,11 @@ export class TextSectionComponent {
   sections: TextSectionInterface[] = []; // populate with data using service
   constructor(private elementRef: ElementRef,private textSectionService: TextSectionServiceService) { }
   @ViewChildren('myElement') itemElements!: QueryList<ElementRef>;
+  @ViewChildren('scrollHere') scrollPosition!: QueryList<ElementRef>;
+  scrollPositions:number[] = [];
+
   private previousItemCount = 0;
+  private previousScrollPositionCount = 0;
 
   getSections(): void {
     this.textSectionService.getSections()
@@ -30,6 +34,7 @@ export class TextSectionComponent {
 
   ngOnInit(): void {
     this.getSections();
+    console.log("scrolling positions, ", this.scrollPosition);
   }
 
   ngAfterViewInit() {
@@ -41,18 +46,28 @@ export class TextSectionComponent {
   callMethodForEachItem() {
     const tempPosition:number[] = [];
     this.itemElements.forEach((element, index) => {
-      //console.log(`Element ${index + 1}: `, element.nativeElement.textContent);
       tempPosition.push(element.nativeElement.getBoundingClientRect().y);
     });
     this.setSections(tempPosition);
-    console.log("new positions:",tempPosition);
-    console.log("updated positions in class : ", this.sections);
+  }
+
+  setScrollPosition() {
+    const tempPosition:number[] = [];
+    this.scrollPosition.forEach((element, index) => {
+      tempPosition.push(element.nativeElement.getBoundingClientRect().y);
+    });
+    this.scrollPositions = tempPosition;
+    console.log("scrolling position",this.scrollPositions);
   }
 
   ngDoCheck() {
     if (this.itemElements && this.previousItemCount !== this.itemElements.length) {
       this.previousItemCount = this.itemElements.length;
       this.callMethodForEachItem();
+    }
+    if (this.scrollPosition && this.previousScrollPositionCount !== this.scrollPosition.length) {
+      this.previousScrollPositionCount = this.scrollPosition.length;
+      this.setScrollPosition();
     }
   }
 }

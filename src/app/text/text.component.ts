@@ -9,6 +9,7 @@ import { CommonModule, NgIf, NgFor} from '@angular/common';
   styleUrl: './text.component.css'
 })
 export class TextComponent {
+  @Input() isActive:boolean=false;
   @Input() imagePaths:string[] = [];
   @Input() textDescription:string = '';
   @Input() imageText:string[] = [];
@@ -17,6 +18,8 @@ export class TextComponent {
   @Input() iconObject3:string[] = [];
   @Input() skillList1:string[] = [];
   @Input() skillList2:string[] = [];
+  @Input() skillMeta1:string[] = [];
+  @Input() skillMeta2:string[] = [];
 
   isEmpty(value: any): boolean {
     return (
