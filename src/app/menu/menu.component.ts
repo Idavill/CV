@@ -33,7 +33,7 @@ export class MenuComponent {
   }
 
   setPosition():void {
-    this.settingDataSubscription = this.textSectionService.setPositions([0,0,0])
+    this.settingDataSubscription = this.textSectionService.setPositions([],[])
     .subscribe(data => {
       this.sections = data;
     });

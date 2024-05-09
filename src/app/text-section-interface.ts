@@ -4,6 +4,7 @@ export interface TextSectionInterface {
     text:string;
     isActive:boolean;
     position:number;
+    scrollPosition:number;
     skillMeta1:string[];
     skillList1:string[];
     skillMeta2:string[];

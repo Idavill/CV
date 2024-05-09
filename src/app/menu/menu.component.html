@@ -1,3 +1,3 @@
 <div *ngFor="let section of sections; index as i">
-    <p class="menu-item" (mousedown)="moveToSection(section.position)" [style.color]="section.isActive? 'red' : 'black'">{{ section.headline }}</p>
+    <p class="menu-item" (mousedown)="moveToSection(section.scrollPosition)" [style.color]="section.isActive? 'red' : 'black'">{{ section.headline }}</p>
 </div>

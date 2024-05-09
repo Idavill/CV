@@ -25,16 +25,16 @@ export class TextSectionComponent {
     this.textSectionService.getSections()
         .subscribe(sections => {
           this.sections = sections;
+          console.log("inside menu sectinos are: ", sections);
         })
   }
 
-  setSections(positions:number[]){
-    this.textSectionService.setPositions(positions);
+  setSections(positions:number[],scrollPosition:number[]){
+    this.textSectionService.setPositions(positions,scrollPosition);
   }
 
   ngOnInit(): void {
     this.getSections();
-    console.log("scrolling positions, ", this.scrollPosition);
   }
 
   ngAfterViewInit() {
@@ -45,30 +45,36 @@ export class TextSectionComponent {
 
   callMethodForEachItem() {
     const tempPosition:number[] = [];
+    const tempScrollPositions:number[] = [];
     this.itemElements.forEach((element, index) => {
-      tempPosition.push(element.nativeElement.getBoundingClientRect().y);
+      if(index%2){
+        tempPosition.push(element.nativeElement.getBoundingClientRect().y);
+      } else {
+        tempScrollPositions.push(element.nativeElement.getBoundingClientRect().y);
+      }
     });
-    this.setSections(tempPosition);
+    console.log("these are the positions being set: ", tempPosition);
+    this.setSections(tempPosition,tempScrollPositions);
   }
 
-  setScrollPosition() {
-    const tempPosition:number[] = [];
-    this.scrollPosition.forEach((element, index) => {
-      tempPosition.push(element.nativeElement.getBoundingClientRect().y);
-    });
-    this.scrollPositions = tempPosition;
-    console.log("scrolling position",this.scrollPositions);
-  }
+  // setScrollPosition() {
+  //   const tempPosition:number[] = [];
+  //   this.scrollPosition.forEach((element, index) => {
+  //     tempPosition.push(element.nativeElement.getBoundingClientRect().y);
+  //   });
+  //   this.scrollPositions = tempPosition;
+  //   console.log("scrolling position",this.scrollPositions);
+  // }
 
   ngDoCheck() {
     if (this.itemElements && this.previousItemCount !== this.itemElements.length) {
       this.previousItemCount = this.itemElements.length;
       this.callMethodForEachItem();
     }
-    if (this.scrollPosition && this.previousScrollPositionCount !== this.scrollPosition.length) {
-      this.previousScrollPositionCount = this.scrollPosition.length;
-      this.setScrollPosition();
-    }
+    // if (this.scrollPosition && this.previousScrollPositionCount !== this.scrollPosition.length) {
+    //   this.previousScrollPositionCount = this.scrollPosition.length;
+    //   this.setScrollPosition();
+    // }
   }
 }
 

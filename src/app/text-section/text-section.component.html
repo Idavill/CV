@@ -1,7 +1,7 @@
 <div>
   <div *ngFor="let section of sections">
     <br/><br/>
-    <div #scrollHere></div>
+    <div #myElement></div>
     <app-text [isActive]="section.isActive" [textDescription]="section.text" [iconObject]="section.iconObject" [iconObject2]="section.iconObject2" [iconObject3]="section.iconObject3" [skillList1]="section.skillList1" [skillList2]="section.skillList2" [skillMeta1]="section.skillMeta1" [skillMeta2]="section.skillMeta2"></app-text>
     <br/><br/>
     <p #myElement class ="line">___________________________</p>

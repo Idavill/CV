@@ -8,8 +8,7 @@ import { Observable, of } from 'rxjs';
 })
 export class TextSectionServiceService {
   sections:Observable<TextSectionInterface[]> = of(SECTIONS);
-  scrollPosition:Observable<number[]>=of([]);
-  offset:number = 0;
+  offset:number = 200.0;
 
   constructor() { }
 
@@ -17,10 +16,17 @@ export class TextSectionServiceService {
     return this.sections;
   }
 
-  setPositions(positions:number[]):Observable<TextSectionInterface[]>{
+  setPositions(positions:number[],scrollPositions:number[]):Observable<TextSectionInterface[]>{
     SECTIONS.forEach((section,i) => {
-      section.position = positions[i] + this.offset;
-      });
+      section.position = positions[i];
+      if(i == 0){
+        section.scrollPosition = 0; // only for the first section
+      } else {
+        section.scrollPosition = scrollPositions[i]; // for some reason it works better when first put straight and then with offset
+        section.scrollPosition = scrollPositions[i] + this.offset;
+      }
+
+    });
     return this.sections;
   }
 
