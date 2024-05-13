@@ -20,6 +20,8 @@ export class TextComponent {
   @Input() skillList2:string[] = [];
   @Input() skillMeta1:string[] = [];
   @Input() skillMeta2:string[] = [];
+  @Input() skillLevel1:string[] = [];
+  @Input() skillLevel2:string[] = [];
 
   isEmpty(value: any): boolean {
     return (

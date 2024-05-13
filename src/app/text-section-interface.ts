@@ -7,8 +7,10 @@ export interface TextSectionInterface {
     scrollPosition:number;
     skillMeta1:string[];
     skillList1:string[];
+    skillLevel1:number[],
     skillMeta2:string[];
     skillList2:string[];
+    skillLevel2:number[],
     iconObject:string[];
     iconObject2:string[];
     iconObject3:string[];

@@ -6,10 +6,12 @@
         <h2 class="logo-text">
             {{skillMeta1[1]}}
             <div *ngFor="let skill of skillList1">
-                <p class="logo-paragraph">{{skill}}</p>
+                <div class="paragraph-and-bar-container">
+                    <div class="skill-level"></div>
+                    <div class="bar"></div>
+                    <p class="logo-paragraph">{{skill}}</p>
+                </div>
             </div>
-            <h2 class="logo-paragraph">{{skillList1[2]}}</h2>
-            <p class="logo-paragraph">{{skillList1[3]}}</p>
         </h2>
     </div>
     <div class="skills" *ngIf="!isEmpty(skillList2[0])" >
@@ -17,7 +19,11 @@
         <h2 class="logo-text">
             {{skillMeta2[1]}}
             <div *ngFor="let skill of skillList2">
-                <p class="logo-paragraph">{{skill}}</p>
+                <div class="paragraph-and-bar-container">
+                    <div class="skill-level" ></div>
+                    <div class="bar"></div>
+                    <p class="logo-paragraph">{{skill}}</p>
+                </div>
             </div>
         </h2>
     </div>

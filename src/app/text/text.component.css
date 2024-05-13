@@ -87,15 +87,13 @@
 
 .logo-paragraph{
   width:15em;
-  /* margin:1em;
-  padding:1em; */
-  align-content: center;
+  /* align-content: center; */
   font-size: 1.5rem;
   color: white;
   font-weight: 300;
   line-height: 100%;
   letter-spacing: -0.0rem;
-  margin-bottom: 0.1em;
+  /* margin-bottom: 0.1em; */
   z-index: 2;
   font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -104,8 +102,6 @@
 
 .logo-date{
   width:15em;
-  /* margin:1em;
-  padding:1em; */
   align-content: center;
   font-size: 1.7rem;
   color: var(--gray-900);
@@ -118,4 +114,33 @@
   font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
+}
+
+.paragraph-and-bar-container{
+  display: flex;
+  flex-direction:row;
+}
+
+.bar{
+  margin-top:1em;
+  margin-right:1em;
+  height:1em;
+  width:4em;
+  background-color: rgb(255, 255, 255); 
+  border-radius: 50px;
+  color:red;
+  /* margin-bottom: 0.1em; */
+  align-content: center;
+}
+
+.skill-level{
+  position: absolute;
+  margin-top:1em;
+  margin-right:1em;
+  height:1em;
+  width:1em;
+  background-color: rgb(255, 0, 0); 
+  border-radius: 50px;
+  /* margin-bottom: 0.1em; */
+  align-content: center;
 }

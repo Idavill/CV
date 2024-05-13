@@ -11,8 +11,10 @@ export const SECTIONS: TextSectionInterface[] = [
     scrollPosition:0,
     skillMeta1:[],
     skillList1:[],
+    skillLevel1:[],
     skillMeta2:[],
     skillList2:[],
+    skillLevel2:[],
     iconObject:[],
     iconObject2:[],
     iconObject3:[]
@@ -36,6 +38,13 @@ export const SECTIONS: TextSectionInterface[] = [
         'Typescript',
         'SQL'
     ],
+    skillLevel1:[
+      1,
+      2,
+      3,
+      4,
+    ],
+
     skillMeta2:[
       '/assets/model.png',
       'architecture & design',
@@ -50,6 +59,13 @@ export const SECTIONS: TextSectionInterface[] = [
         'Photoshop',
         'InDesign'
     ],
+    skillLevel2:[
+      1,
+      2,
+      3,
+      4,
+    ],
+
     iconObject:[],
     iconObject2:[],
     iconObject3:[]
@@ -63,8 +79,12 @@ export const SECTIONS: TextSectionInterface[] = [
     scrollPosition:0,
     skillMeta1:[],
     skillList1:[],
+    skillLevel1:[],
+
     skillMeta2:[],
     skillList2:[],
+    skillLevel2:[],
+
     iconObject:[
       '/assets/ITU.png',
       'IT University Copenhagen',
@@ -89,8 +109,12 @@ export const SECTIONS: TextSectionInterface[] = [
     scrollPosition:0,
     skillMeta1:[],
     skillList1:[],
+    skillLevel1:[],
+
     skillList2:[],
     skillMeta2:[],
+    skillLevel2:[],
+
     iconObject:[
       '/assets/twoday2.png',
       'Twoday',
